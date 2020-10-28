@@ -109,7 +109,13 @@
           <v-btn color="primary" text @click="dialog = false">
             続けて登録
           </v-btn>
-          <v-btn color="primary" text to="/view"> 投票結果を見る </v-btn>
+          <v-btn
+            color="primary"
+            text
+            :to="{ name: 'Preview', params: { name: name } }"
+          >
+            投票結果を見る
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
