@@ -33,21 +33,15 @@ export default {
   methods: {
     preview() {
       console.log("preview");
-
-      let httpClient = this.axios.create({
-        baseURL: "https://wvywcbiya8.execute-api.ap-northeast-1.amazonaws.com",
-        xsrfHeaderName: "X-CSRF-Token",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      httpClient
-        .get("/Prod/viewer", {
-          params: {
-            name: this.name,
-          },
-        })
+      this.axios
+        .get(
+          "https://wvywcbiya8.execute-api.ap-northeast-1.amazonaws.com/Prod/viewer",
+          {
+            params: {
+              name: this.name,
+            },
+          }
+        )
         .then((response) => {
           let dataset = [0, 0, 0, 0, 0, 0, 0];
           if (Object.keys(response.data).length > 0) {

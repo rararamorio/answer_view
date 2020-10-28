@@ -13,6 +13,11 @@ const routes = [
     component: Answer
   },
   {
+    path: '/index.html',
+    name: 'Answer',
+    component: Answer
+  },
+  {
     path: '/view',
     name: 'PreviewForm',
     component: PreviewForm

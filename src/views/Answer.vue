@@ -88,7 +88,12 @@
         ></v-slider>
       </v-col>
       <v-col cols="1">
-        <v-btn :disabled="!valid" color="success" class="mr-4" @click="submit">
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click.prevent="submit"
+        >
           登録
         </v-btn>
       </v-col>
@@ -143,27 +148,22 @@ export default {
         return;
       }
       console.log("send");
-      let httpClient = this.axios.create({
-        baseURL: "https://6pen25otxb.execute-api.ap-northeast-1.amazonaws.com",
-        xsrfHeaderName: "X-CSRF-Token",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-      httpClient
-        .get("/Prod/answer", {
-          params: {
-            name: this.name,
-            infra_skill: this.infra_skill,
-            pg_skill: this.pg_skill,
-            op_skill: this.op_skill,
-            comm_skill: this.comm_skill,
-            strength: this.strength,
-            management: this.management,
-            kindness: this.kindness,
-          },
-        })
+      this.axios
+        .get(
+          "https://a8lwzkhlo8.execute-api.ap-northeast-1.amazonaws.com/Prod/answer",
+          {
+            params: {
+              name: this.name,
+              infra_skill: this.infra_skill,
+              pg_skill: this.pg_skill,
+              op_skill: this.op_skill,
+              comm_skill: this.comm_skill,
+              strength: this.strength,
+              management: this.management,
+              kindness: this.kindness,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.dialog = true;
